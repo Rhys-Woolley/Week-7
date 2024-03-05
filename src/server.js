@@ -6,10 +6,16 @@ const app = express();
 // Sends GET request
 // const response = await fetch("http://someaddress.com");
 
-// Receives GET request
+const fakeArr = [];
+
 app.get("/example", (request, response) => {
-  response.send("Hello there!");
+  response.send({ message: "success", fakeArr: fakeArr });
 });
+
+// Receives GET request
+// app.get("/example", (request, response) => {
+//   response.send("Hello there!");
+// });
 
 app.listen(5001, () => {
   console.log("Server is listening on Port 5001");

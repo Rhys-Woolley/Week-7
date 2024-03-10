@@ -2,20 +2,24 @@ const express = require("express");
 
 const app = express();
 
-// HTTP Verbs - GET, POST, PUT, DELETE
-// Sends GET request
-// const response = await fetch("http://someaddress.com");
-
 const fakeArr = [];
 
-app.get("/example", (request, response) => {
+app.use(express.json());
+
+app.get("/books", (request, response) => {
   response.send({ message: "success", fakeArr: fakeArr });
 });
 
-// Receives GET request
-// app.get("/example", (request, response) => {
-//   response.send("Hello there!");
-// });
+app.get("/books", (req, res) => {
+  const book = fakeArr[0];
+  response.send({ message: "success", book: book });
+});
+
+app.post("/books", (request, response) => {
+  fakeArr.push(request.body);
+  console.log(fakeArr);
+  response.send({ message: "success", newBook: fakeArr[fakeArr.length - 1] });
+});
 
 app.listen(5001, () => {
   console.log("Server is listening on Port 5001");
